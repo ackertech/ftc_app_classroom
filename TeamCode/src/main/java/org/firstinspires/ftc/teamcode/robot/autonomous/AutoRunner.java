@@ -14,11 +14,8 @@ import org.firstinspires.ftc.teamcode.robot.subsystems.Gyro;
 public class AutoRunner extends LinearOpMode {
 
     MecanumDrive myMechDrive;
-
     Gyro myGyro;
-
     Paths myPaths;
-
 
 
     private ElapsedTime runtime = new ElapsedTime();
