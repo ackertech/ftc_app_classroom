@@ -1,11 +1,9 @@
-package org.firstinspires.ftc.teamcode.robot.autonomous;
+package org.firstinspires.ftc.teamcode.simple;
 
-import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.robot.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Gyro;
 
 
@@ -14,8 +12,7 @@ import org.firstinspires.ftc.teamcode.robot.subsystems.Gyro;
 public class AutoRunner extends LinearOpMode {
 
     MecanumDrive myMechDrive;
-    Gyro myGyro;
-    Paths myPaths;
+      Paths myPaths;
 
 
     private ElapsedTime runtime = new ElapsedTime();
@@ -33,12 +30,8 @@ public class AutoRunner extends LinearOpMode {
         final long sleepTime = 100;
         final double SPD_DRIVE_MED = .5;
 
-
         myMechDrive = new MecanumDrive(hardwareMap.dcMotor.get("front_left_motor"), hardwareMap.dcMotor.get("front_right_motor"), hardwareMap.dcMotor.get("rear_left_motor"), hardwareMap.dcMotor.get("rear_right_motor"));
         myMechDrive.setLinearOp(this);
-
-        myGyro = new Gyro(hardwareMap.get(BNO055IMU.class, "imu"));
-        myGyro.setLinearOp(this);
 
         myPaths = new Paths();
         myPaths.setLinearOp(this);
@@ -52,7 +45,7 @@ public class AutoRunner extends LinearOpMode {
             sleep(100);
             idle();
 
-            myPaths.DriveTest(myGyro, myMechDrive);
+            myPaths.DriveTest(myMechDrive);
 
             sleep(sleepTime);
             idle();

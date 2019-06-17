@@ -1,7 +1,7 @@
-package org.firstinspires.ftc.teamcode.robot.autonomous;
+package org.firstinspires.ftc.teamcode.simple;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import org.firstinspires.ftc.teamcode.robot.subsystems.MecanumDrive;
+
 import org.firstinspires.ftc.teamcode.robot.subsystems.Gyro;
 
 
@@ -29,7 +29,7 @@ public class Paths {
     }
 
 
-    public void DriveTest (Gyro myGyro, MecanumDrive myMechDrive) {
+    public void DriveTest (MecanumDrive myMechDrive) {
 
         myMechDrive.driveForward(SPD_DRIVE_HIGH, 3);
         linearOp.sleep(sleepTime);
