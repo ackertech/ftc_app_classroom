@@ -4,10 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.robot.subsystems.Gyro;
 
-
-@Autonomous(name = "Auto Runner")
+@Autonomous(name = "Auto - Simple Runner")
 //@Disabled
 public class AutoRunner extends LinearOpMode {
 

@@ -2,8 +2,6 @@ package org.firstinspires.ftc.teamcode.simple;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.robot.subsystems.Gyro;
-
 
 public class Paths {
 
