@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Base.robot;
+package org.firstinspires.ftc.teamcode.base.robot;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
@@ -10,28 +10,20 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.teamcode.Base.subsystems.MechDrive;
-import org.firstinspires.ftc.teamcode.Base.subsystems.Lift;
+import org.firstinspires.ftc.teamcode.base.subsystems.MechDrive;
+import org.firstinspires.ftc.teamcode.base.subsystems.Lift;
 
 
 public class LabBot extends MechDrive {
 
 
-    public Lift myLift;
+    public Lift myLift = new Lift();
     public HardwareMap hwBot  =  null;
 
     public final double SPD_DRIVE_LOW = .38;
     public final double SPD_DRIVE_MED = 0.5;
     public final double SPD_DRIVE_HIGH = .75;
     public final double SPD_DRIVE_MAX = 1.0;
-
-
-    public LinearOpMode linearOp = null;
-
-
-    public void setLinearOp (LinearOpMode Op) {
-        linearOp = Op;
-    }
 
     public LabBot() {
 
@@ -73,13 +65,12 @@ public class LabBot extends MechDrive {
         parametersimu.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
 
         imu = hwBot.get(BNO055IMU.class, "imu");
-        //imu = I;
         imu.initialize(parametersimu);
 
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
         // Define & Iniitialize Servos
-        //myLift = hwBot.servo.get("lift_arm");
+        myLift  = hwBot.get(Lift.class, "lift_servo");
 
 
     }

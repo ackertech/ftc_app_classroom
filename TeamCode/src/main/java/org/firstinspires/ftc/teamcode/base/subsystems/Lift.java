@@ -1,6 +1,5 @@
-package org.firstinspires.ftc.teamcode.Base.subsystems;
+package org.firstinspires.ftc.teamcode.base.subsystems;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Lift {
@@ -15,6 +14,10 @@ public class Lift {
 
 
     // constructors
+
+    public Lift() {
+
+    }
 
     public Lift(double extend, double retract) {
 

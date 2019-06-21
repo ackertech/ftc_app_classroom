@@ -1,9 +1,7 @@
-package org.firstinspires.ftc.teamcode.Base.subsystems;
+package org.firstinspires.ftc.teamcode.base.subsystems;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
-import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
@@ -20,18 +18,17 @@ public class MechDrive implements DriveSystem  {
     public DcMotor rearRightMotor;
     public DcMotor rearLeftMotor;
 
-    public final double FACTOR = 0.9;
     public final DcMotor.RunMode currentMotorRunMode = DcMotor.RunMode.RUN_WITHOUT_ENCODER;
     public static final double TICKS_PER_ROTATION = 538; // TICKS (COUNTS) PER ROTATION NEEDED!!!!!!!! :)
-    public int counts;
+
 
     public LinearOpMode linearOp = null;
 
+    // Rotating with Gyro
     public Orientation angles;
     public Acceleration gravity;
     public BNO055IMU imu;
     final public double SPEED = .3;
-
     public final double TOLERANCE = .4;
 
 
@@ -124,7 +121,7 @@ public class MechDrive implements DriveSystem  {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(currentMotorRunMode);
             while (frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
-                setMotorSpeeds(speed);
+                driveForward(speed);
             }
             stopMotors();
         }
@@ -137,7 +134,7 @@ public class MechDrive implements DriveSystem  {
         setMotorRunModes(currentMotorRunMode);
 
         while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
-            setMotorSpeeds(-speed);
+            driveBackward(speed);
         }
         stopMotors();
     }
@@ -149,10 +146,9 @@ public class MechDrive implements DriveSystem  {
         setMotorRunModes(currentMotorRunMode);
 
             while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
-                frontLeftMotor.setPower(-speed);
-                frontRightMotor.setPower(speed);
-                rearLeftMotor.setPower(speed);
-                rearRightMotor.setPower(-speed);
+                linearOp.telemetry.addData("current position", frontLeftMotor.getCurrentPosition());
+                linearOp.telemetry.update();
+                rotateLeft(speed);
             }
             stopMotors();
     }
@@ -165,11 +161,7 @@ public class MechDrive implements DriveSystem  {
             while(frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
                 linearOp.telemetry.addData("current position", frontLeftMotor.getCurrentPosition());
                 linearOp.telemetry.update();
-
-                frontLeftMotor.setPower(speed);
-                frontRightMotor.setPower(-speed);
-                rearLeftMotor.setPower(-speed);
-                rearRightMotor.setPower(speed);
+                rotateRight(speed);
             }
             stopMotors();
     }
@@ -181,10 +173,7 @@ public class MechDrive implements DriveSystem  {
         setMotorRunModes(currentMotorRunMode);
 
             while (frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
-                frontLeftMotor.setPower(speed);
-                frontRightMotor.setPower(-speed);
-                rearLeftMotor.setPower(speed);
-                rearRightMotor.setPower(-speed);
+                strafeRight(speed);
             }
             stopMotors();
     }
@@ -195,10 +184,7 @@ public class MechDrive implements DriveSystem  {
         setMotorRunModes(currentMotorRunMode);
 
             while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
-                frontLeftMotor.setPower(-speed);
-                frontRightMotor.setPower(speed);
-                rearLeftMotor.setPower(-speed);
-                rearRightMotor.setPower(speed);
+             strafeLeft(speed);
             }
         stopMotors();
     }

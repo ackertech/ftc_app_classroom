@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.Base.competition;
+package org.firstinspires.ftc.teamcode.base.competition;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.Base.robot.LabBot;
+import org.firstinspires.ftc.teamcode.base.robot.LabBot;
 
 
 //@Disabled
