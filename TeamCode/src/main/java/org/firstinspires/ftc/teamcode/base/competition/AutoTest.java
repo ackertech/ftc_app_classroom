@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.base.competition;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.base.robot.LabBot;
 
@@ -10,17 +12,23 @@ import org.firstinspires.ftc.teamcode.base.robot.LabBot;
 //@Disabled
 public class AutoTest extends LinearOpMode {
 
+    // Object Construction
+   public ElapsedTime runtime = new ElapsedTime();
+   public LabBot AckerBot = new LabBot();
 
-   private ElapsedTime runtime = new ElapsedTime();
-
-   final long sleepTime = 100;
-   LabBot myBot = new LabBot();
+   // Variables & Constants Specific to Autonomous
+   public final double SPD_DRIVE_LOW = 0.38;
+   public final double SPD_DRIVE_MED = 0.50;
+   public final double SPD_DRIVE_HIGH = 0.75;
+   public final double SPD_DRIVE_MAX = 1.0;
+   public final long sleepTime = 100;
 
 
     @Override
     public void runOpMode() throws InterruptedException {
 
-        myBot.init(hardwareMap);
+        //Hardware Initialization from Robot Class
+        AckerBot.init(hardwareMap);
 
         waitForStart();
 
@@ -31,44 +39,62 @@ public class AutoTest extends LinearOpMode {
 
             idle();
 
-        //    myBot.myLift.LiftExtend();
-
-            myBot.driveForward(myBot.SPD_DRIVE_MAX);
-            sleep(1000);
-
-            myBot.stopMotors();
+            AckerBot.HoodOpen();
+            telemetry.addData("Status", "Hood Opened");
+            telemetry.update();
             sleep(2000);
 
-            myBot.myLift.LiftRetract();
+            AckerBot.HoodClose();
+            telemetry.addData("Status", "Hood Closed");
+            telemetry.update();
+            sleep(2000);
+
+            AckerBot.driveForward(SPD_DRIVE_MAX,5.0);
             sleep(1000);
+            telemetry.addData("Status", "Drive Forward with Encoders");
+            telemetry.update();
 
+            AckerBot.driveBackward(SPD_DRIVE_MAX,5.0);
+            sleep(1000);
+            telemetry.addData("Status", "Drive Backward with Encoders");
+            telemetry.update();
 
-            //myBot.driveForward(myBot.SPD_DRIVE_MAX,2.0);
+            AckerBot.rotateLeft(SPD_DRIVE_MAX, 5.0);
+            sleep(1000);
+            telemetry.addData("Status", "Rotate Left with Encoders");
+            telemetry.update();
+
+            AckerBot.rotateRight(SPD_DRIVE_MAX, 5.0);
+            sleep(1000);
+            telemetry.addData("Status", "Rotate Right with Encoders");
+            telemetry.update();
+
+            AckerBot.strafeLeft(SPD_DRIVE_MAX,5.0);
+            sleep(1000);
+            telemetry.addData("Status", "Strafe Left with Encoders");
+            telemetry.update();
+
+            AckerBot.strafeRight(SPD_DRIVE_MAX,5.0);
+            sleep(1000);
+            telemetry.addData("Status", "Strafe Right with Encoders");
+            telemetry.update();
+
+            AckerBot.stopMotors();
+            telemetry.addData("Status", "Stop All Motors");
+            telemetry.update();
+/**
+            //AckerBot.checkAngle(90);
             //sleep(1000);
 
-            //myBot.driveBackward(myBot.SPD_DRIVE_MAX,2.0);
+            //AckerBot.checkAngle(180);
             //sleep(1000);
 
-            //myBot.strafeLeft(myBot.SPD_DRIVE_MAX,2.0);
+            //AckerBot.checkAngle(270);
             //sleep(1000);
 
-            //myBot.strafeRight(myBot.SPD_DRIVE_MAX,2.0);
+            //AckerBot.checkAngle(358);
             //sleep(1000);
-
-            //myBot.stopMotors();
-
-            //myBot.checkAngle(90);
-            //sleep(1000);
-
-            //myBot.checkAngle(180);
-            //sleep(1000);
-
-            //myBot.checkAngle(270);
-            //sleep(1000);
-
-            //myBot.checkAngle(358);
-            //sleep(1000);
-
+**/
             idle();
 
             requestOpModeStop();

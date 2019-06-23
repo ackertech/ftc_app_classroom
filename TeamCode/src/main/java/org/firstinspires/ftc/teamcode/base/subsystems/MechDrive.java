@@ -17,12 +17,15 @@ public class MechDrive implements DriveSystem  {
     public DcMotor frontRightMotor;
     public DcMotor rearRightMotor;
     public DcMotor rearLeftMotor;
+    public LinearOpMode linearOp = null;
 
-    public final DcMotor.RunMode currentMotorRunMode = DcMotor.RunMode.RUN_WITHOUT_ENCODER;
     public static final double TICKS_PER_ROTATION = 538; // TICKS (COUNTS) PER ROTATION NEEDED!!!!!!!! :)
 
 
-    public LinearOpMode linearOp = null;
+    //FTC SDK Requirement
+    public void setLinearOp (LinearOpMode Op) {
+        linearOp = Op;
+    }
 
     // Rotating with Gyro
     public Orientation angles;
@@ -30,15 +33,6 @@ public class MechDrive implements DriveSystem  {
     public BNO055IMU imu;
     final public double SPEED = .3;
     public final double TOLERANCE = .4;
-
-
-    public void setLinearOp (LinearOpMode Op) {
-        linearOp = Op;
-    }
-
-    public MechDrive() {
-
-    }
 
 
     public void stopMotors() {
@@ -98,14 +92,14 @@ public class MechDrive implements DriveSystem  {
         rearRightMotor.setPower(speed);
     }
 
-    public void driveForward ( double speed){
+    public void driveForward (double speed){
         frontLeftMotor.setPower(speed);
         frontRightMotor.setPower(speed);
         rearLeftMotor.setPower(speed);
         rearRightMotor.setPower(speed);
     }
 
-    public void driveBackward ( double speed){
+    public void driveBackward (double speed){
         frontLeftMotor.setPower(-speed);
         frontRightMotor.setPower(-speed);
         rearLeftMotor.setPower(-speed);
@@ -113,14 +107,32 @@ public class MechDrive implements DriveSystem  {
     }
 
 
+    // Assessor Methods for Instance Variables
+    public void setFrontLeftPower (double speed) {
+        frontLeftMotor.setPower(speed);
+    }
+
+    public void setRearLeftPower (double speed) {
+        rearLeftMotor.setPower(speed);
+    }
+
+    public void setFrontRightPower (double speed) {
+        frontRightMotor.setPower(speed);
+    }
+
+    public void setRearRightPower (double speed) {
+        rearRightMotor.setPower(speed);
+    }
+
     // Powers Motors with Encoder Counts
 
     public void driveForward( double speed, double rotations) {
 
         double ticks = rotations * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        setMotorRunModes(currentMotorRunMode);
-            while (frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while (frontLeftMotor.getCurrentPosition() < ticks) {
                 driveForward(speed);
             }
             stopMotors();
@@ -131,9 +143,9 @@ public class MechDrive implements DriveSystem  {
 
         double ticks = rotations * (-1) * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        setMotorRunModes(currentMotorRunMode);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+        while (frontLeftMotor.getCurrentPosition() > ticks) {
             driveBackward(speed);
         }
         stopMotors();
@@ -141,26 +153,24 @@ public class MechDrive implements DriveSystem  {
 
 
     public void rotateLeft (double speed, double rotations) {
+
         double ticks = Math.abs(rotations) * (-1) * TICKS_PER_ROTATION; //strafing left moves encoder towards positive infinity
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        setMotorRunModes(currentMotorRunMode);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-            while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
-                linearOp.telemetry.addData("current position", frontLeftMotor.getCurrentPosition());
-                linearOp.telemetry.update();
+        while (frontLeftMotor.getCurrentPosition() > ticks) {
                 rotateLeft(speed);
             }
             stopMotors();
     }
 
      public void rotateRight (double speed, double rotations) {
-         double ticks = Math.abs(rotations) * TICKS_PER_ROTATION; //strafing right moves encoder towards -infinity
-         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-         setMotorRunModes(currentMotorRunMode);
 
-            while(frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
-                linearOp.telemetry.addData("current position", frontLeftMotor.getCurrentPosition());
-                linearOp.telemetry.update();
+        double ticks = Math.abs(rotations) * TICKS_PER_ROTATION; //strafing right moves encoder towards -infinity
+         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+         while(frontLeftMotor.getCurrentPosition() < ticks) {
                 rotateRight(speed);
             }
             stopMotors();
@@ -168,22 +178,24 @@ public class MechDrive implements DriveSystem  {
 
 
     public void strafeRight (double speed, double rotations) {
+
         double ticks = Math.abs(rotations) * TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        setMotorRunModes(currentMotorRunMode);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-            while (frontLeftMotor.getCurrentPosition() < ticks && linearOp.opModeIsActive()) {
+        while (frontLeftMotor.getCurrentPosition() < ticks) {
                 strafeRight(speed);
             }
             stopMotors();
     }
 
     public void strafeLeft (double speed, double rotations) {
+
         double ticks = Math.abs(rotations) * (-1) *  TICKS_PER_ROTATION;
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        setMotorRunModes(currentMotorRunMode);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-            while (frontLeftMotor.getCurrentPosition() > ticks && linearOp.opModeIsActive()) {
+        while (frontLeftMotor.getCurrentPosition() > ticks) {
              strafeLeft(speed);
             }
         stopMotors();
@@ -193,16 +205,14 @@ public class MechDrive implements DriveSystem  {
     public void checkAngle (double angle) {
 
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-        linearOp.telemetry.update();
-        linearOp.sleep(50); //intentionally long sleep for feedback
-        if (angles.firstAngle >= angle + TOLERANCE) {
-            while (angles.firstAngle >=  angle + TOLERANCE && linearOp.opModeIsActive()) {
+         if (angles.firstAngle >= angle + TOLERANCE) {
+            while (angles.firstAngle >=  angle + TOLERANCE) {
                 rotateRight(SPEED);
                 angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
             }
         }
         else if (angles.firstAngle <= angle - TOLERANCE) {
-            while (angles.firstAngle <= angle - TOLERANCE && linearOp.opModeIsActive()) {
+            while (angles.firstAngle <= angle - TOLERANCE) {
                 rotateLeft(SPEED);
                 angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
             }

@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.base.competition;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.robot.Robot;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -13,6 +14,11 @@ import org.firstinspires.ftc.teamcode.base.robot.LabBot;
 
 public class TeleOp extends OpMode {
 
+    // Object Construction
+    public ElapsedTime TeleOpTime = new ElapsedTime();
+    public LabBot AckerBot = new LabBot();
+
+    // Variables & Constants specific to TeleOp
     double leftStickYVal;
     double leftStickXVal;
     double rightStickXVal;
@@ -22,46 +28,44 @@ public class TeleOp extends OpMode {
     double rearLeftSpeed;
     double rearRightSpeed;
 
-    boolean reverseModeToggle;
-    double speedMultiplier = 1.0;
-
-    boolean initTeleOpToggle;
-
     double powerThreshold = 0;
 
-    public ElapsedTime TeleOpTime;
 
-    LabBot myBot;
-
-
+    // Runs ONCE when driver presses INIT
     @Override
     public void init() {
 
-        //map  & set up devices.
-        myBot.init(hardwareMap);
+        AckerBot = new LabBot();
 
+        //Hardware Initialization from Robot Class
+        AckerBot.init(hardwareMap);
 
         TeleOpTime = new ElapsedTime();
 
-        //set initial toggles
-        reverseModeToggle = true;
-        initTeleOpToggle = true;
     }
 
+    // Runs Repeatedly when driver presses INIT but before pressing PLAY
+    @Override
+    public void init_loop() {
+
+    }
+
+    // Runs ONCE when driver presses PLAY
+    @Override
+    public void start() {
+    }
+
+
+    // RUNS Repeatedly after driver presses PLAY
     @Override
     public void loop() {
 
-        if (initTeleOpToggle) {
-            initTeleOp();
-        }
+        controlHood();
 
-        reverseMode();
-
-        speedToggle();
+        motorTest();
 
         drive();
 
-        //output telemetry
         telemetryOutput();
 
 
@@ -77,78 +81,10 @@ public class TeleOp extends OpMode {
         telemetry.addData("Right joystick Y (gp2): ", gamepad2.right_stick_y);
         telemetry.update();
 
-
-        telemetry.update();
-
     }
-
-    // resets & initializes the servo positions for the Intake Rotator and Lander Scorer
-
-    public void initTeleOp() {
-        TeleOpTime.reset();
-        initTeleOpToggle = false;               // false so initializes only once
-    }
-
 
 
     public void drive () {
-
-        if (reverseModeToggle) {
-
-            leftStickYVal = -gamepad1.left_stick_y;
-            leftStickYVal = Range.clip(leftStickYVal, -1, 1);
-            leftStickXVal = gamepad1.left_stick_x;
-            leftStickXVal = Range.clip(leftStickXVal, -1, 1);
-            rightStickXVal = -gamepad1.right_stick_x;
-            rightStickXVal = Range.clip(rightStickXVal, -1, 1);
-
-            myBot.frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
-            myBot.rearLeftMotor.setDirection(DcMotor.Direction.REVERSE);
-            myBot.frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
-            myBot.rearRightMotor.setDirection(DcMotor.Direction.FORWARD);
-
-            frontLeftSpeed = leftStickYVal + leftStickXVal + rightStickXVal;
-            frontLeftSpeed = Range.clip(frontLeftSpeed, -1, 1);
-
-            frontRightSpeed = leftStickYVal - leftStickXVal - rightStickXVal;
-            frontRightSpeed = Range.clip(frontRightSpeed, -1, 1);
-
-            rearLeftSpeed = leftStickYVal - leftStickXVal + rightStickXVal;
-            rearLeftSpeed = Range.clip(rearLeftSpeed, -1, 1);
-
-            rearRightSpeed = leftStickYVal + leftStickXVal - rightStickXVal;
-            rearRightSpeed = Range.clip(rearRightSpeed, -1, 1);
-
-            if (frontLeftSpeed <= powerThreshold && frontLeftSpeed >= -powerThreshold) {
-                frontLeftSpeed = 0;
-                myBot.frontLeftMotor.setPower(frontLeftSpeed);
-            } else {
-                myBot.frontLeftMotor.setPower(frontLeftSpeed * speedMultiplier);
-            }
-
-            if (frontRightSpeed <= powerThreshold && frontRightSpeed >= -powerThreshold){
-                frontRightSpeed = 0;
-                myBot.frontRightMotor.setPower(frontRightSpeed);
-            } else {
-                myBot.frontRightMotor.setPower(frontRightSpeed * speedMultiplier);
-            }
-
-            if (rearLeftSpeed <= powerThreshold && rearLeftSpeed >= -powerThreshold) {
-                rearLeftSpeed = 0;
-                myBot.rearLeftMotor.setPower(rearLeftSpeed);
-            } else {
-                myBot.rearLeftMotor.setPower(rearLeftSpeed * speedMultiplier);
-            }
-
-            if (rearRightSpeed <= powerThreshold && rearRightSpeed >= -powerThreshold){
-                rearRightSpeed = 0;
-                myBot.rearRightMotor.setPower(rearRightSpeed);
-            } else {
-                myBot.rearRightMotor.setPower(rearRightSpeed * speedMultiplier);
-            }
-        }
-
-        else {
 
             leftStickYVal = -gamepad1.left_stick_y;
             leftStickYVal = Range.clip(leftStickYVal, -1, 1);
@@ -157,11 +93,6 @@ public class TeleOp extends OpMode {
             rightStickXVal = gamepad1.right_stick_x;
             rightStickXVal = Range.clip(rightStickXVal, -1, 1);
 
-            myBot.frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
-            myBot.rearLeftMotor.setDirection(DcMotor.Direction.FORWARD);
-            myBot.frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
-            myBot.rearRightMotor.setDirection(DcMotor.Direction.REVERSE);
-
             frontLeftSpeed = leftStickYVal + leftStickXVal + rightStickXVal;
             frontLeftSpeed = Range.clip(frontLeftSpeed, -1, 1);
 
@@ -176,53 +107,51 @@ public class TeleOp extends OpMode {
 
             if (frontLeftSpeed <= powerThreshold && frontLeftSpeed >= -powerThreshold) {
                 frontLeftSpeed = 0;
-                myBot.frontLeftMotor.setPower(frontLeftSpeed);
+                AckerBot.frontLeftMotor.setPower(frontLeftSpeed);
             } else {
-                myBot.frontLeftMotor.setPower(frontLeftSpeed * speedMultiplier);
+                AckerBot.frontLeftMotor.setPower(frontLeftSpeed);
             }
 
             if (frontRightSpeed <= powerThreshold && frontRightSpeed >= -powerThreshold){
                 frontRightSpeed = 0;
-                myBot.frontRightMotor.setPower(frontRightSpeed);
+                AckerBot.frontRightMotor.setPower(frontRightSpeed);
             } else {
-                myBot.frontRightMotor.setPower(frontRightSpeed * speedMultiplier);
+                AckerBot.frontRightMotor.setPower(frontRightSpeed);
             }
 
             if (rearLeftSpeed <= powerThreshold && rearLeftSpeed >= -powerThreshold) {
                 rearLeftSpeed = 0;
-                myBot.rearLeftMotor.setPower(rearLeftSpeed);
+                AckerBot.rearLeftMotor.setPower(rearLeftSpeed);
             } else {
-                myBot.rearLeftMotor.setPower(rearLeftSpeed * speedMultiplier);
+                AckerBot.rearLeftMotor.setPower(rearLeftSpeed);
             }
 
             if (rearRightSpeed <= powerThreshold && rearRightSpeed >= -powerThreshold){
                 rearRightSpeed = 0;
-                myBot.rearRightMotor.setPower(rearRightSpeed);
+                AckerBot.rearRightMotor.setPower(rearRightSpeed);
             } else {
-                myBot.rearRightMotor.setPower(rearRightSpeed * speedMultiplier);
+                AckerBot.rearRightMotor.setPower(rearRightSpeed);
             }
+
+    }
+
+
+    public void controlHood() {
+        if (gamepad1.y) {
+            AckerBot.HoodOpen();
+        }
+        else if (gamepad1.a) {
+            AckerBot.HoodClose();
         }
     }
 
-    //Reverse mode for driver control
-    public void reverseMode () {
-        if (gamepad1.dpad_up) {    //see if the controller is in reverse mode or not (if joysticks are pressed down or not)
-            reverseModeToggle = false; // forward mode
-        }
+    public void motorTest() {
+        if (gamepad1.x) {
+            AckerBot.driveBackward(1.0);
 
-        else if (gamepad1.dpad_down) {
-            reverseModeToggle = true;    //reverse mode
         }
-    }
-
-    // Speed Toggle for Driver 1.  Allows Driver to shift between full speed and reduced speed using bumpers
-    public void speedToggle () {
-        if (gamepad1.left_bumper) {
-            speedMultiplier = 1.0;
-        }
-
-        else if (gamepad1.right_bumper) {
-            speedMultiplier = 0.60;
+        else if (gamepad1.b) {
+            AckerBot.setFrontLeftPower(1.0);
         }
     }
 

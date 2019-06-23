@@ -35,16 +35,16 @@ public class Paths {
         myMechDrive.driveBackward(SPD_DRIVE_HIGH, 3);
         linearOp.sleep(sleepTime);
 
-        myMechDrive.rotateLeft(SPD_DRIVE_HIGH, 1);
+        myMechDrive.rotateLeft(SPD_DRIVE_HIGH, 3);
         linearOp.sleep(sleepTime);
 
-        myMechDrive.rotateRight(SPD_DRIVE_HIGH, 1);
-        linearOp.sleep(sleepTime);
-
-        myMechDrive.strafeRight(SPD_DRIVE_MED, 3);
+        myMechDrive.rotateRight(SPD_DRIVE_HIGH, 3);
         linearOp.sleep(sleepTime);
 
         myMechDrive.strafeRight(SPD_DRIVE_MED, 3);
+        linearOp.sleep(sleepTime);
+
+        myMechDrive.strafeLeft(SPD_DRIVE_MED, 3);
         linearOp.sleep(sleepTime);
 
         myMechDrive.stopMotors();

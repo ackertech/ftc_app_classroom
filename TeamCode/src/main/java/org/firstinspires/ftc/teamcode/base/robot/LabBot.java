@@ -2,8 +2,9 @@ package org.firstinspires.ftc.teamcode.base.robot;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -16,14 +17,23 @@ import org.firstinspires.ftc.teamcode.base.subsystems.Lift;
 
 public class LabBot extends MechDrive {
 
-
-    public Lift myLift = new Lift();
+    //Robot Hardware Constructors
+    public Servo HoodLeft = null;
+    public Servo HoodRight = null;
     public HardwareMap hwBot  =  null;
+    public LinearOpMode linearOp = null;
 
-    public final double SPD_DRIVE_LOW = .38;
-    public final double SPD_DRIVE_MED = 0.5;
-    public final double SPD_DRIVE_HIGH = .75;
-    public final double SPD_DRIVE_MAX = 1.0;
+
+   // Robot variables & constants
+
+
+   //FTC SDK Requirement
+   public void setLinearOp (LinearOpMode Op) {
+       linearOp = Op;
+   }
+
+
+    //LabBot Constructor
 
     public LabBot() {
 
@@ -33,28 +43,37 @@ public class LabBot extends MechDrive {
 
         hwBot = hwMap;
 
-        // Define and Initialize Motors
+        // Define Motors for Robot
         frontLeftMotor = hwBot.dcMotor.get("front_left_motor");
         frontRightMotor = hwBot.dcMotor.get("front_right_motor");
         rearLeftMotor = hwBot.dcMotor.get("rear_left_motor");
         rearRightMotor = hwBot.dcMotor.get("rear_right_motor");
 
+
         frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
-        rearLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        rearLeftMotor.setDirection(DcMotor.Direction.FORWARD);
         frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
-        rearRightMotor.setDirection(DcMotor.Direction.FORWARD);
+        rearRightMotor.setDirection(DcMotor.Direction.REVERSE);
 
+
+        //Initialize Motor Run Mode for Robot
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        setMotorRunModes(currentMotorRunMode);
 
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rearRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rearLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        // Define & Initialize Servos
+        HoodLeft = hwBot.get(Servo.class, "hood_left");
+        HoodLeft.setDirection(Servo.Direction.FORWARD);
 
-        // Define and Initialize Gyro
+        HoodRight = hwBot.get(Servo.class, "hood_right");
+        HoodLeft.setDirection(Servo.Direction.REVERSE);
+        HoodInit();
+
+        /** Define and Initialize Gyro
 
         BNO055IMU.Parameters parametersimu = new BNO055IMU.Parameters();
         parametersimu.angleUnit = BNO055IMU.AngleUnit.DEGREES;
@@ -68,13 +87,35 @@ public class LabBot extends MechDrive {
         imu.initialize(parametersimu);
 
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+**/
 
-        // Define & Iniitialize Servos
-        myLift  = hwBot.get(Lift.class, "lift_servo");
+
+
 
 
     }
 
 
+
+
+    public void HoodClose () {
+
+        HoodLeft.setPosition(.32);
+        HoodRight.setPosition(.32);
+    }
+
+
+    public void HoodInit () {
+
+        HoodLeft.setPosition(.32);
+        HoodRight.setPosition(.32);
+    }
+
+    public void HoodOpen () {
+
+        HoodLeft.setPosition(0);
+        HoodRight.setPosition(0);
+
+    }
 
 }

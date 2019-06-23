@@ -15,14 +15,15 @@ public class Lift {
 
     // constructors
 
-    public Lift() {
-
+    public Lift(Servo servoLift) {
+        this.servoLift = servoLift;
     }
 
-    public Lift(double extend, double retract) {
+    public Lift(Servo servoLift, double extend, double retract) {
 
         liftExtend = extend;
         liftRetract = retract;
+        this.servoLift = servoLift;
     }
 
 
