@@ -57,8 +57,9 @@ public class LabBot extends MechDrive {
 
 
         //Initialize Motor Run Mode for Robot
-        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

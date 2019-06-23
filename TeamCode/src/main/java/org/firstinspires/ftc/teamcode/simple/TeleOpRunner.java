@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.simple;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
@@ -9,7 +10,7 @@ import com.qualcomm.robotcore.util.Range;
 
 
 //@Disabled
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "TeleOp - Simple Runner")
+@TeleOp(name = "TeleOpTest - Simple Runner")
 
 public class TeleOpRunner extends OpMode {
 

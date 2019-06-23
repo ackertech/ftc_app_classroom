@@ -19,7 +19,7 @@ public class MechDrive implements DriveSystem  {
     public DcMotor rearLeftMotor;
     public LinearOpMode linearOp = null;
 
-    public static final double TICKS_PER_ROTATION = 538; // TICKS (COUNTS) PER ROTATION NEEDED!!!!!!!! :)
+    public static final double TICKS_PER_ROTATION = 386.3;   // GoBilda Motor TICKS
 
 
     //FTC SDK Requirement

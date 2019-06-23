@@ -1,24 +1,22 @@
 package org.firstinspires.ftc.teamcode.base.competition;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.robot.Robot;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
-
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.base.robot.LabBot;
 
 
 //@Disabled
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "TeleOp - LabBot")
+@TeleOp(name = "TeleOp - LabBot")
 
-public class TeleOp extends OpMode {
+public class TeleOpTest extends OpMode {
 
     // Object Construction
     public ElapsedTime TeleOpTime = new ElapsedTime();
     public LabBot AckerBot = new LabBot();
 
-    // Variables & Constants specific to TeleOp
+    // Variables & Constants specific to TeleOpTest
     double leftStickYVal;
     double leftStickXVal;
     double rightStickXVal;
@@ -44,15 +42,18 @@ public class TeleOp extends OpMode {
 
     }
 
+
     // Runs Repeatedly when driver presses INIT but before pressing PLAY
     @Override
     public void init_loop() {
 
     }
 
+
     // Runs ONCE when driver presses PLAY
     @Override
     public void start() {
+
     }
 
 
@@ -71,7 +72,16 @@ public class TeleOp extends OpMode {
 
     }
 
+    // Code to run ONCE after the driver presses STOP
+    @Override
+    public void stop() {
 
+        AckerBot.HoodInit();
+
+    }
+
+
+        
     public void telemetryOutput() {
         telemetry.addData("pwr", "FL mtr: " + frontLeftSpeed);
         telemetry.addData("pwr", "FR mtr: " + frontRightSpeed);
@@ -147,7 +157,7 @@ public class TeleOp extends OpMode {
 
     public void motorTest() {
         if (gamepad1.x) {
-            AckerBot.driveBackward(1.0);
+            AckerBot.rearLeftMotor.setPower(1.0);
 
         }
         else if (gamepad1.b) {
