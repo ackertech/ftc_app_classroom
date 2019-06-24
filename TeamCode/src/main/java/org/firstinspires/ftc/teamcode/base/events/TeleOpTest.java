@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.base.competition;
+package org.firstinspires.ftc.teamcode.base.events;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -38,6 +38,9 @@ public class TeleOpTest extends OpMode {
         //Hardware Initialization from Robot Class
         AckerBot.init(hardwareMap);
 
+        AckerBot.HoodSmile();
+        AckerBot.RearLiftUp();
+
         TeleOpTime = new ElapsedTime();
 
     }
@@ -54,6 +57,8 @@ public class TeleOpTest extends OpMode {
     @Override
     public void start() {
 
+        AckerBot.HoodClose();
+
     }
 
 
@@ -62,8 +67,6 @@ public class TeleOpTest extends OpMode {
     public void loop() {
 
         controlHood();
-
-        motorTest();
 
         drive();
 
@@ -76,7 +79,7 @@ public class TeleOpTest extends OpMode {
     @Override
     public void stop() {
 
-        AckerBot.HoodInit();
+        AckerBot.HoodOpen();
 
     }
 
@@ -148,21 +151,19 @@ public class TeleOpTest extends OpMode {
 
     public void controlHood() {
         if (gamepad1.y) {
-            AckerBot.HoodOpen();
+            AckerBot.HoodSmile();
         }
         else if (gamepad1.a) {
             AckerBot.HoodClose();
         }
-    }
-
-    public void motorTest() {
-        if (gamepad1.x) {
-            AckerBot.rearLeftMotor.setPower(1.0);
-
+        else if (gamepad1.x) {
+            AckerBot.RearLiftUp();
         }
         else if (gamepad1.b) {
-            AckerBot.setFrontLeftPower(1.0);
+            AckerBot.RearLiftMid();
         }
     }
+
+
 
 }

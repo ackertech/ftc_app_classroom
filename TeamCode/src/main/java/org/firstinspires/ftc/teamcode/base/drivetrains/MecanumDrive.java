@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.base.subsystems;
+package org.firstinspires.ftc.teamcode.base.drivetrains;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -11,7 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 
-public class MechDrive implements DriveSystem  {
+public class MecanumDrive implements DriveTrain {
 
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;

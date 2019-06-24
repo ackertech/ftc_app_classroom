@@ -1,9 +1,7 @@
-package org.firstinspires.ftc.teamcode.base.competition;
+package org.firstinspires.ftc.teamcode.base.events;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.base.robot.LabBot;
 
@@ -53,6 +51,12 @@ public class AutoTest extends LinearOpMode {
             sleep(1000);
             telemetry.addData("Status", "Drive Forward with Encoders");
             telemetry.update();
+
+            AckerBot.HoodSmile();
+            telemetry.addData("Status", "Hood Smiling");
+            telemetry.update();
+            sleep(2000);
+
 
             AckerBot.driveBackward(SPD_DRIVE_MAX,5.0);
             sleep(1000);

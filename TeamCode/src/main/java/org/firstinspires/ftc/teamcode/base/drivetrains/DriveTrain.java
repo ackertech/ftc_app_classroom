@@ -1,9 +1,9 @@
-package org.firstinspires.ftc.teamcode.base.subsystems;
+package org.firstinspires.ftc.teamcode.base.drivetrains;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 
-public interface DriveSystem {
+public interface DriveTrain {
 
     void setMotorSpeeds (double speed);
 

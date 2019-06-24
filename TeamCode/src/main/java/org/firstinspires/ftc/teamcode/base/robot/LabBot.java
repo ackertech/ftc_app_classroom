@@ -1,25 +1,19 @@
 package org.firstinspires.ftc.teamcode.base.robot;
 
-import com.qualcomm.hardware.bosch.BNO055IMU;
-import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.teamcode.base.subsystems.MechDrive;
-import org.firstinspires.ftc.teamcode.base.subsystems.Lift;
+import org.firstinspires.ftc.teamcode.base.drivetrains.MecanumDrive;
 
 
-public class LabBot extends MechDrive {
+public class LabBot extends MecanumDrive {
 
     //Robot Hardware Constructors
     public Servo HoodLeft = null;
     public Servo HoodRight = null;
+    public Servo RearLift = null;
     public HardwareMap hwBot  =  null;
     public LinearOpMode linearOp = null;
 
@@ -58,8 +52,8 @@ public class LabBot extends MechDrive {
 
         //Initialize Motor Run Mode for Robot
 
-        setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -73,6 +67,9 @@ public class LabBot extends MechDrive {
         HoodRight = hwBot.get(Servo.class, "hood_right");
         HoodLeft.setDirection(Servo.Direction.REVERSE);
         HoodInit();
+
+        RearLift = hwBot.get(Servo.class, "rear_lift");
+        RearLiftInit();
 
         /** Define and Initialize Gyro
 
@@ -101,22 +98,59 @@ public class LabBot extends MechDrive {
 
     public void HoodClose () {
 
-        HoodLeft.setPosition(.32);
-        HoodRight.setPosition(.32);
+        HoodLeft.setPosition(.31);
+        HoodRight.setPosition(.31);
     }
 
 
     public void HoodInit () {
 
-        HoodLeft.setPosition(.32);
-        HoodRight.setPosition(.32);
+        HoodLeft.setPosition(.31);
+        HoodRight.setPosition(.31);
     }
+
+    public void HoodSmile () {
+
+        HoodLeft.setPosition(.18);
+        HoodRight.setPosition(.18);
+
+    }
+
 
     public void HoodOpen () {
 
-        HoodLeft.setPosition(0);
-        HoodRight.setPosition(0);
+        HoodLeft.setPosition(.10);
+        HoodRight.setPosition(.10);
 
     }
+
+
+
+    public void RearLiftUp () {
+
+        RearLift.setPosition(.20);
+    }
+
+
+    public void RearLiftInit () {
+
+        RearLift.setPosition(.20);
+
+    }
+
+    public void RearLiftDown () {
+
+        RearLift.setPosition(.50);
+
+
+    }
+
+    public void RearLiftMid () {
+
+        RearLift.setPosition(.40);
+
+
+    }
+
 
 }
