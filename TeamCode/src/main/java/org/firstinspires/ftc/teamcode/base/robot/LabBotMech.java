@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.base.drivetrains.MecanumDrive;
 
 
-public class LabBot extends MecanumDrive {
+public class LabBotMech extends MecanumDrive {
 
     //Robot Hardware Constructors
     public Servo HoodLeft = null;
@@ -27,9 +27,9 @@ public class LabBot extends MecanumDrive {
    }
 
 
-    //LabBot Constructor
+    //LabBotMech Constructor
 
-    public LabBot() {
+    public LabBotMech() {
 
     }
 

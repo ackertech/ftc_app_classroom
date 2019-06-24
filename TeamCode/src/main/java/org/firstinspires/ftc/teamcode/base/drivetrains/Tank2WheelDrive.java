@@ -8,7 +8,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 
-public class TankDrive implements DriveTrain {
+public class Tank2WheelDrive implements DriveTrain {
 
     public DcMotor rearRightMotor;
     public DcMotor rearLeftMotor;

@@ -3,16 +3,16 @@ package org.firstinspires.ftc.teamcode.base.events;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.teamcode.base.robot.LabBot;
+import org.firstinspires.ftc.teamcode.base.robot.LabBotMech;
 
 
-@Autonomous(name = "Auto - LabBot")
+@Autonomous(name = "Auto - LabBotMech")
 //@Disabled
-public class AutoTest extends LinearOpMode {
+public class AutoMechTest extends LinearOpMode {
 
     // Object Construction
    public ElapsedTime runtime = new ElapsedTime();
-   public LabBot AckerBot = new LabBot();
+   public LabBotMech AckerBot = new LabBotMech();
 
    // Variables & Constants Specific to Autonomous
    public final double SPD_DRIVE_LOW = 0.38;

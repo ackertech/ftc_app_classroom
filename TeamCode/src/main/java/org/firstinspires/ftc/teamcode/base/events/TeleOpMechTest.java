@@ -4,19 +4,19 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import org.firstinspires.ftc.teamcode.base.robot.LabBot;
+import org.firstinspires.ftc.teamcode.base.robot.LabBotMech;
 
 
 //@Disabled
-@TeleOp(name = "TeleOp - LabBot")
+@TeleOp(name = "TeleOp - LabBotMech")
 
-public class TeleOpTest extends OpMode {
+public class TeleOpMechTest extends OpMode {
 
     // Object Construction
     public ElapsedTime TeleOpTime = new ElapsedTime();
-    public LabBot AckerBot = new LabBot();
+    public LabBotMech AckerBot = new LabBotMech();
 
-    // Variables & Constants specific to TeleOpTest
+    // Variables & Constants specific to TeleOpMechTest
     double leftStickYVal;
     double leftStickXVal;
     double rightStickXVal;
@@ -33,7 +33,7 @@ public class TeleOpTest extends OpMode {
     @Override
     public void init() {
 
-        AckerBot = new LabBot();
+        AckerBot = new LabBotMech();
 
         //Hardware Initialization from Robot Class
         AckerBot.init(hardwareMap);
