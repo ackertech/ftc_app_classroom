@@ -27,7 +27,7 @@
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
  * THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.firstinspires.ftc.teamcode.base.events;
+package org.firstinspires.ftc.teamcode.base.controls;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -39,18 +39,9 @@ import org.firstinspires.ftc.robotcore.internal.system.Deadline;
 
 import java.util.concurrent.TimeUnit;
 
-/*
- * Display patterns of a REV Robotics Blinkin LED Driver.
- * AUTO mode cycles through all of the patterns.
- * MANUAL mode allows the user to manually change patterns using the
- * left and right bumpers of a gamepad.
- *
- * Configure the driver on a servo port, and name it "blinkin".
- *
- * Displays the first pattern upon init.
- */
-@TeleOp(name="BlinkinExample")
-@Disabled
+
+@TeleOp(name="LabBot - LED Control")
+//@Disabled
 public class LEDControl extends OpMode {
 
     /*
@@ -82,7 +73,7 @@ public class LEDControl extends OpMode {
     {
         displayKind = DisplayKind.AUTO;
 
-        blinkinLedDriver = hardwareMap.get(RevBlinkinLedDriver.class, "blinkin");
+        blinkinLedDriver = hardwareMap.get(RevBlinkinLedDriver.class, "led_strip");
         pattern = RevBlinkinLedDriver.BlinkinPattern.RAINBOW_RAINBOW_PALETTE;
         blinkinLedDriver.setPattern(pattern);
 
@@ -162,3 +153,14 @@ public class LEDControl extends OpMode {
         patternName.setValue(pattern.toString());
     }
 }
+
+//SHORT_RED
+//SHORT_BLUE
+//SHORT_WHITE
+
+//COLOR_WAVES_LAVA_PALETTE
+//COLOR_WAVES_OCEAN_PALETTE
+
+//STROBE_RED
+//STROBE_BLUE
+//STROBE_WHITE

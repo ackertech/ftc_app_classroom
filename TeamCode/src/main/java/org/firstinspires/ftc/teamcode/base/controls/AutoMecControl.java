@@ -1,18 +1,18 @@
-package org.firstinspires.ftc.teamcode.base.events;
+package org.firstinspires.ftc.teamcode.base.controls;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.teamcode.base.robot.LabBotMech;
+import org.firstinspires.ftc.teamcode.base.robots.LabBotMec;
 
 
-@Autonomous(name = "Auto - LabBotMech")
+@Autonomous(name = "Auto - LabBot Mecanum")
 //@Disabled
-public class AutoMechTest extends LinearOpMode {
+public class AutoMecControl extends LinearOpMode {
 
     // Object Construction
    public ElapsedTime runtime = new ElapsedTime();
-   public LabBotMech AckerBot = new LabBotMech();
+   public LabBotMec AckerBot = new LabBotMec();
 
    // Variables & Constants Specific to Autonomous
    public final double SPD_DRIVE_LOW = 0.38;
@@ -86,19 +86,7 @@ public class AutoMechTest extends LinearOpMode {
             AckerBot.stopMotors();
             telemetry.addData("Status", "Stop All Motors");
             telemetry.update();
-/**
-            //AckerBot.checkAngle(90);
-            //sleep(1000);
 
-            //AckerBot.checkAngle(180);
-            //sleep(1000);
-
-            //AckerBot.checkAngle(270);
-            //sleep(1000);
-
-            //AckerBot.checkAngle(358);
-            //sleep(1000);
-**/
             idle();
 
             requestOpModeStop();

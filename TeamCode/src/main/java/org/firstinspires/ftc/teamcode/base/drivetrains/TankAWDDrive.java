@@ -8,8 +8,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 
-public class Tank2WheelDrive implements DriveTrain {
+public class TankAWDDrive implements DriveTrain {
 
+    public DcMotor frontLeftMotor;
+    public DcMotor frontRightMotor;
     public DcMotor rearRightMotor;
     public DcMotor rearLeftMotor;
     public LinearOpMode linearOp = null;
@@ -31,6 +33,8 @@ public class Tank2WheelDrive implements DriveTrain {
 
 
     public void stopMotors() {
+        frontLeftMotor.setPower(0);
+        frontRightMotor.setPower(0);
         rearLeftMotor.setPower(0);
         rearRightMotor.setPower(0);
 
@@ -39,6 +43,8 @@ public class Tank2WheelDrive implements DriveTrain {
 
     public void setMotorRunModes (DcMotor.RunMode mode) {
 
+        frontLeftMotor.setMode(mode);
+        frontRightMotor.setMode(mode);
         rearLeftMotor.setMode(mode);
         rearRightMotor.setMode(mode);
 
@@ -46,6 +52,8 @@ public class Tank2WheelDrive implements DriveTrain {
 
     // Sets speed for all motors with one method
     public void setMotorSpeeds (double speed) {
+        frontLeftMotor.setPower(speed);
+        frontRightMotor.setPower(speed);
         rearRightMotor.setPower(speed);
         rearLeftMotor.setPower(speed);
     }
@@ -55,21 +63,31 @@ public class Tank2WheelDrive implements DriveTrain {
 
 
     public void rotateLeft (double speed) {
-        rearLeftMotor.setPower(speed);
-        rearRightMotor.setPower(-speed);
+        frontLeftMotor.setPower(-speed);
+        rearLeftMotor.setPower(-speed);
+        rearRightMotor.setPower(speed);
+        frontRightMotor.setPower(speed);
+
+
     }
 
     public void rotateRight (double speed) {
-        rearLeftMotor.setPower(-speed);
-        rearRightMotor.setPower(speed);
+        frontLeftMotor.setPower(speed);
+        rearLeftMotor.setPower(speed);
+        rearRightMotor.setPower(-speed);
+        frontRightMotor.setPower(-speed);
     }
 
     public void driveForward (double speed){
+        frontLeftMotor.setPower(speed);
+        frontRightMotor.setPower(speed);
         rearLeftMotor.setPower(speed);
         rearRightMotor.setPower(speed);
     }
 
     public void driveBackward (double speed){
+        frontLeftMotor.setPower(-speed);
+        frontRightMotor.setPower(-speed);
         rearLeftMotor.setPower(-speed);
         rearRightMotor.setPower(-speed);
     }
@@ -83,7 +101,7 @@ public class Tank2WheelDrive implements DriveTrain {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while (rearLeftMotor.getCurrentPosition() < ticks) {
+        while (frontLeftMotor.getCurrentPosition() < ticks) {
                 driveForward(speed);
             }
             stopMotors();
@@ -96,7 +114,7 @@ public class Tank2WheelDrive implements DriveTrain {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while (rearLeftMotor.getCurrentPosition() > ticks) {
+        while (frontLeftMotor.getCurrentPosition() > ticks) {
             driveBackward(speed);
         }
         stopMotors();
@@ -109,7 +127,7 @@ public class Tank2WheelDrive implements DriveTrain {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while (rearLeftMotor.getCurrentPosition() > ticks) {
+        while (frontLeftMotor.getCurrentPosition() > ticks) {
                 rotateLeft(speed);
         }
         stopMotors();
@@ -121,7 +139,7 @@ public class Tank2WheelDrive implements DriveTrain {
         setMotorRunModes(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         setMotorRunModes(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while(rearLeftMotor.getCurrentPosition() < ticks) {
+        while(frontLeftMotor.getCurrentPosition() < ticks) {
             rotateRight(speed);
         }
         stopMotors();

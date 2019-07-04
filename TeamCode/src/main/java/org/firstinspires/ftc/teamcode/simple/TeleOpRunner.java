@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.Range;
 
 
 //@Disabled
-@TeleOp(name = "TeleOpMechTest - Simple Runner")
+@TeleOp(name = "TeleOpMecControl - Simple Runner")
 
 public class TeleOpRunner extends OpMode {
 

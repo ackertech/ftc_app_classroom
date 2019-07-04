@@ -1,15 +1,15 @@
-package org.firstinspires.ftc.teamcode.base.robot;
+package org.firstinspires.ftc.teamcode.base.robots;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.base.drivetrains.MecanumDrive;
-import org.firstinspires.ftc.teamcode.base.drivetrains.Tank4WheelDrive;
 
 
-public class LabBotAllWheel extends Tank4WheelDrive {
+public class LabBotMec extends MecanumDrive {
 
     //Robot Hardware Constructors
     public Servo HoodLeft = null;
@@ -17,7 +17,8 @@ public class LabBotAllWheel extends Tank4WheelDrive {
     public Servo RearLift = null;
     public HardwareMap hwBot  =  null;
     public LinearOpMode linearOp = null;
-
+    public RevBlinkinLedDriver blinkinLedDriver;
+    public RevBlinkinLedDriver.BlinkinPattern pattern;
 
    // Robot variables & constants
 
@@ -28,9 +29,9 @@ public class LabBotAllWheel extends Tank4WheelDrive {
    }
 
 
-    //LabBotMech Constructor
+    //LabBotMec Constructor
 
-    public LabBotAllWheel() {
+    public LabBotMec() {
 
     }
 
@@ -71,6 +72,11 @@ public class LabBotAllWheel extends Tank4WheelDrive {
 
         RearLift = hwBot.get(Servo.class, "rear_lift");
         RearLiftInit();
+
+        //Define & Initialize LED Lights
+        blinkinLedDriver = hwBot.get(RevBlinkinLedDriver.class, "led_strip");
+        pattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_LAVA_PALETTE;
+        blinkinLedDriver.setPattern(pattern);
 
         /** Define and Initialize Gyro
 
