@@ -167,7 +167,7 @@ public class TeleOpAWDControl extends OpMode {
             AckerBot.RearLiftUp();
         }
         else if (gamepad1.b) {
-            AckerBot.RearLiftMid();
+            AckerBot.RearLiftDown();
         }
     }
 

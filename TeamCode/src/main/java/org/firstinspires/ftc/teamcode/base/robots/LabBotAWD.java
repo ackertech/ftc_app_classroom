@@ -148,7 +148,7 @@ public class LabBotAWD extends TankAWDDrive {
 
     public void RearLiftDown () {
 
-        RearLift.setPosition(.50);
+        RearLift.setPosition(.60);
 
 
     }
