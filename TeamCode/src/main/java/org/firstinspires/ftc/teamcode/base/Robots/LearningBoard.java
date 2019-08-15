@@ -7,9 +7,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.base.Drivetrains.Tank2WDDrive;
 
-public class LabBoard extends Tank2WDDrive {
+public class LearningBoard extends Tank2WDDrive {
 
-    // LabBoard Instance Variables
+    // LearningBoard Instance Variables
 
     public HardwareMap hwBot;
     public Servo labServo1 = null;
@@ -19,9 +19,9 @@ public class LabBoard extends Tank2WDDrive {
 
 
 
-    //LabBoard Constructor
+    //LearningBoard Constructor
 
-    public LabBoard() {
+    public LearningBoard() {
 
     }
 

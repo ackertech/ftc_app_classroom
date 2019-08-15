@@ -5,18 +5,17 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.base.Robots.LabBoard;
-import org.firstinspires.ftc.teamcode.base.Robots.LabBotMec;
+import org.firstinspires.ftc.teamcode.base.Robots.LearningBoard;
 
 //@Disabled
-@TeleOp(name = "TeleOp - LabBoard")
+@TeleOp(name = "TeleOp - LearningBoard")
 
 
 public class TeleOpLabBoard extends OpMode {
 
     // Object Construction
     public ElapsedTime TeleOpTime = new ElapsedTime();
-    public LabBoard rookieBoard = new LabBoard();
+    public LearningBoard rookieBoard = new LearningBoard();
 
     // Variables & Constants specific to TeleOpMecControl
     double leftStickYVal;
@@ -35,7 +34,7 @@ public class TeleOpLabBoard extends OpMode {
     @Override
     public void init() {
 
-        rookieBoard = new LabBoard();
+        rookieBoard = new LearningBoard();
 
         //Hardware Initialization from Robot Class
         rookieBoard.init(hardwareMap);

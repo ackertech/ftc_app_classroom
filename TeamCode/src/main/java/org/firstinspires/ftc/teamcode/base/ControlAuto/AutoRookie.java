@@ -4,17 +4,16 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.base.Robots.LabBoard;
-import org.firstinspires.ftc.teamcode.base.Robots.LabBotAWD;
+import org.firstinspires.ftc.teamcode.base.Robots.LearningBoard;
 
 
 @Autonomous(name = "Auto - LabBot AWD")
 //@Disabled
-public class AutoLabBoard extends LinearOpMode {
+public class AutoRookie extends LinearOpMode {
 
     // Object Construction
    public ElapsedTime runtime = new ElapsedTime();
-   public LabBoard rookieBoard = new LabBoard();
+   public LearningBoard rookieBoard = new LearningBoard();
 
    // Variables & Constants Specific to Autonomous
    public final double SPD_DRIVE_LOW = 0.38;
