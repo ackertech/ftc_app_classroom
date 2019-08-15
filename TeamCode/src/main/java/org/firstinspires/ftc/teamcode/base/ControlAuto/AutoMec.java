@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.base.Robots.LabBotMec;
 
 @Autonomous(name = "Auto - LabBot Mecanum")
 //@Disabled
-public class AutoMecControl extends LinearOpMode {
+public class AutoMec extends LinearOpMode {
 
     // Object Construction
    public ElapsedTime runtime = new ElapsedTime();
