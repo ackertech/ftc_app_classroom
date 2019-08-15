@@ -85,4 +85,17 @@ public class LearningBoard extends Tank2WDDrive {
     public void linearRetract(double power) {
         linearMotor.setPower(-power);
     }
+
+    public void ServoDance () {
+
+        labServo1.setPosition(.1);
+        labServo2.setPosition(.1);
+
+        labServo1.setPosition(.9);
+        labServo2.setPosition(.9);
+
+        labServo1.setPosition(.5);
+        labServo2.setPosition(.5);
+
+    }
 }

@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.base.Robots.LearningBoard;
 
 @Autonomous(name = "Auto - LabBot AWD")
 //@Disabled
-public class AutoRookie extends LinearOpMode {
+public class AutoLabBoard extends LinearOpMode {
 
     // Object Construction
    public ElapsedTime runtime = new ElapsedTime();
@@ -63,13 +63,23 @@ public class AutoRookie extends LinearOpMode {
             telemetry.addData("Status", "Stop All Motors");
             telemetry.update();
 
+            rookieBoard.ServoDance();
+            telemetry.addData("Status", "Servo Dance");
+            telemetry.update();
+
             rookieBoard.linearExtend(0.5);
+            telemetry.addData("Status", "Linear Extend");
+            telemetry.update();
             sleep(1000);
+
             rookieBoard.linearExtend(0);
             sleep(1000);
-            rookieBoard.linearExtend(0.5);
+            rookieBoard.linearRetract(0.5);
+            telemetry.addData("Status", "Linear Retract");
+            telemetry.update();
+
             sleep(1000);
-            rookieBoard.linearExtend(0);
+            rookieBoard.linearRetract(0);
 
             idle();
 
