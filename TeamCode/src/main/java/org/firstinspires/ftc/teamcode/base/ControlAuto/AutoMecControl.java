@@ -1,9 +1,9 @@
-package org.firstinspires.ftc.teamcode.base.controls;
+package org.firstinspires.ftc.teamcode.base.ControlAuto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.teamcode.base.robots.LabBotMec;
+import org.firstinspires.ftc.teamcode.base.Robots.LabBotMec;
 
 
 @Autonomous(name = "Auto - LabBot Mecanum")

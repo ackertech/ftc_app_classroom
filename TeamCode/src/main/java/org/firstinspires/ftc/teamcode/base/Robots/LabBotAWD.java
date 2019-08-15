@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.base.robots;
+package org.firstinspires.ftc.teamcode.base.Robots;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.base.drivetrains.TankAWDDrive;
+import org.firstinspires.ftc.teamcode.base.Drivetrains.TankAWDDrive;
 
 
 public class LabBotAWD extends TankAWDDrive {

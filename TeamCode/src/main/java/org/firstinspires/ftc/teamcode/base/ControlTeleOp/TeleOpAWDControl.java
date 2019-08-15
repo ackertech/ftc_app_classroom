@@ -1,21 +1,22 @@
-package org.firstinspires.ftc.teamcode.base.controls;
+package org.firstinspires.ftc.teamcode.base.ControlTeleOp;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.base.robots.LabBotMec;
+import org.firstinspires.ftc.teamcode.base.Robots.LabBotAWD;
 
 
 //@Disabled
-@TeleOp(name = "TeleOp - LabBot Mecanum")
+@TeleOp(name = "TeleOp - LabBot AWD")
 
-public class TeleOpMecControl extends OpMode {
+public class TeleOpAWDControl extends OpMode {
 
     // Object Construction
     public ElapsedTime TeleOpTime = new ElapsedTime();
-    public LabBotMec AckerBot = new LabBotMec();
+    public LabBotAWD AckerBot = new LabBotAWD();
 
     // Variables & Constants specific to TeleOpMecControl
     double leftStickYVal;
@@ -34,7 +35,7 @@ public class TeleOpMecControl extends OpMode {
     @Override
     public void init() {
 
-        AckerBot = new LabBotMec();
+        AckerBot = new LabBotAWD();
 
         //Hardware Initialization from Robot Class
         AckerBot.init(hardwareMap);
@@ -71,6 +72,8 @@ public class TeleOpMecControl extends OpMode {
 
         drive();
 
+        controlLED();
+
         telemetryOutput();
 
 
@@ -81,6 +84,8 @@ public class TeleOpMecControl extends OpMode {
     public void stop() {
 
         AckerBot.HoodOpen();
+        AckerBot.pattern = RevBlinkinLedDriver.BlinkinPattern.BLACK;
+        AckerBot.blinkinLedDriver.setPattern(AckerBot.pattern);
 
     }
 
@@ -161,10 +166,28 @@ public class TeleOpMecControl extends OpMode {
             AckerBot.RearLiftUp();
         }
         else if (gamepad1.b) {
-            AckerBot.RearLiftMid();
+            AckerBot.RearLiftDown();
         }
     }
 
+    public void controlLED() {
+        if (gamepad1.right_bumper) {
+            AckerBot.pattern = RevBlinkinLedDriver.BlinkinPattern.STROBE_RED;
+            AckerBot.blinkinLedDriver.setPattern(AckerBot.pattern);
+        }
+        else if (gamepad1.left_bumper) {
+            AckerBot.pattern = RevBlinkinLedDriver.BlinkinPattern.STROBE_BLUE;
+            AckerBot.blinkinLedDriver.setPattern(AckerBot.pattern);
+        }
+        else if (gamepad1.left_trigger == 1) {
+            AckerBot.pattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_LAVA_PALETTE;
+            AckerBot.blinkinLedDriver.setPattern(AckerBot.pattern);
+        }
+        else if (gamepad1.right_trigger == 1) {
+            AckerBot.pattern = RevBlinkinLedDriver.BlinkinPattern.COLOR_WAVES_OCEAN_PALETTE;
+            AckerBot.blinkinLedDriver.setPattern(AckerBot.pattern);
+        }
+    }
 
 
 }
