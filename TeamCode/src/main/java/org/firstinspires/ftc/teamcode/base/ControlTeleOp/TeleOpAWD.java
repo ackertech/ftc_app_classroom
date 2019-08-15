@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.base.ControlTeleOp;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -9,7 +10,7 @@ import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.base.Robots.LabBotAWD;
 
 
-//@Disabled
+@Disabled
 @TeleOp(name = "TeleOp - LabBot AWD")
 
 public class TeleOpAWD extends OpMode {

@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.base.Robots.LearningBoard;
 
 //@Disabled
-@TeleOp(name = "TeleOp - LearningBoard")
+@TeleOp(name = "Learning Board - TeleOp")
 
 
 public class TeleOpLabBoard extends OpMode {

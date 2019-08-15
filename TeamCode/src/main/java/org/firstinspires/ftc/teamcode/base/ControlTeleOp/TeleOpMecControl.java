@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.base.ControlTeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
@@ -8,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.base.Robots.LabBotMec;
 
 
-//@Disabled
+@Disabled
 @TeleOp(name = "TeleOp - LabBot Mecanum")
 
 public class TeleOpMecControl extends OpMode {

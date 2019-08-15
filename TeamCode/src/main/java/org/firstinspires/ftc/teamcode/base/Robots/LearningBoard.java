@@ -37,8 +37,8 @@ public class LearningBoard extends Tank2WDDrive {
 
         // Define & Initialize Motors for Robot
 
-        rearLeftMotor = hwBot.dcMotor.get("rear_left_motor");
-        rearRightMotor = hwBot.dcMotor.get("rear_right_motor");
+        rearLeftMotor = hwBot.dcMotor.get("motor1");
+        rearRightMotor = hwBot.dcMotor.get("motor2");
 
 
         rearLeftMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -52,10 +52,10 @@ public class LearningBoard extends Tank2WDDrive {
 
         // Define & Initialize Servos
 
-        labServo1 = hwBot.get(Servo.class, "lab_servo1");
+        labServo1 = hwBot.get(Servo.class, "left_servo1");
         labServo1.setDirection(Servo.Direction.FORWARD);
 
-        labServo2 = hwBot.get(Servo.class, "lab_servo2");
+        labServo2 = hwBot.get(Servo.class, "right_servo2");
         labServo2.setDirection(Servo.Direction.FORWARD);
 
         ServoInit();

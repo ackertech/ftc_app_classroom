@@ -1,13 +1,14 @@
 package org.firstinspires.ftc.teamcode.base.ControlAuto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.base.Robots.LabBotMec;
 
 
 @Autonomous(name = "Auto - LabBot Mecanum")
-//@Disabled
+@Disabled
 public class AutoMec extends LinearOpMode {
 
     // Object Construction

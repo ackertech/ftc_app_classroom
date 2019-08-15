@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.base.Robots.LearningBoard;
 
 
-@Autonomous(name = "Auto - LabBot AWD")
+@Autonomous(name = "Learning Board - Auto")
 //@Disabled
 public class AutoLabBoard extends LinearOpMode {
 
